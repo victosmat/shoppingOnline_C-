@@ -30,3 +30,5 @@ D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\obj\D
 D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\obj\Debug\net6.0\WebApi_ShoppingOnline.pdb
 D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\obj\Debug\net6.0\WebApi_ShoppingOnline.genruntimeconfig.cache
 D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\obj\Debug\net6.0\ref\WebApi_ShoppingOnline.dll
+D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\bin\Debug\net6.0\Dapper.dll
+D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\bin\Debug\net6.0\MySqlConnector.dll

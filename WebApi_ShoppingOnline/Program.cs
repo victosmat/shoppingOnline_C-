@@ -1,3 +1,5 @@
+using WebApi_ShoppingOnline.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +17,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+DBConnection.ConnectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
 app.UseHttpsRedirection();
 
