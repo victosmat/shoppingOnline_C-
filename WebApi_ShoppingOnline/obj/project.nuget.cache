@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "DzGJZuQjYN7KLXzpSTW40wsSnlx5OJMkt0KW4fmUfhvQGXt9X9WG8U/IVDMTUR+XXkM+h4TkViyMzYIhIKbNPg==",
+  "success": true,
+  "projectFilePath": "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
