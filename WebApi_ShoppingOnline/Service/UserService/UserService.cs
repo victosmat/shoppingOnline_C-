@@ -5,7 +5,6 @@ namespace WebApi_ShoppingOnline.Service.UserService
 {
     public class UserService : IUserService
     {
-        // Tạm thời bỏ qua cái Dependency Injection, viết kiểu clas cucngx đc
         private UserRepository _userRepo;
 
         public UserService()
@@ -15,27 +14,22 @@ namespace WebApi_ShoppingOnline.Service.UserService
 
         public User AddUser(User user)
         {
-            throw new NotImplementedException();
+            return _userRepo.AddUser(user);
         }
 
-        public User GetByEmail(string email)
+        public int DeleteUser(int userID)
         {
-            throw new NotImplementedException();
-        }
-
-        public User GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public User GetByUserName(string userName)
-        {
-            throw new NotImplementedException();
+            return _userRepo.DeleteUser(userID);
         }
 
         public List<User> GetUsers()
         {
             return _userRepo.GetUsers();
+        }
+
+        public User UpdateUser(User user)
+        {
+            return _userRepo.UpdateUser(user);
         }
     }
 }

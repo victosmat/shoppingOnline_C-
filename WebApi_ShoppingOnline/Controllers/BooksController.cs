@@ -1,29 +1,28 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi_ShoppingOnline.Entity;
-using WebApi_ShoppingOnline.Service.UserService;
+using WebApi_ShoppingOnline.Service.BookService;
 
 namespace WebApi_ShoppingOnline.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class BooksController : ControllerBase
     {
-        private UserService _userService;
+        private BookService _bookService;
 
-        public UsersController()
+        public BooksController()
         {
-            _userService = new UserService();
+            _bookService = new BookService();
         }
-
-        [HttpGet("GetUser")]
-        public IActionResult GetAllUsers()
+        [HttpGet("GetBook")]
+        public IActionResult GetAllBoook()
         {
 
             try
             {
-                List<User> users = _userService.GetUsers();
-                return StatusCode(StatusCodes.Status200OK, users);
+                List<Book> books = _bookService.GetBooks();
+                return StatusCode(StatusCodes.Status200OK, books);
             }
             catch (Exception ex)
             {
@@ -32,13 +31,13 @@ namespace WebApi_ShoppingOnline.Controllers
 
             }
         }
-        [HttpPost("InsertUser")]
-        public IActionResult AddUser([FromBody] User user)
+        [HttpPost("InsertBook")]
+        public IActionResult AddBook([FromBody] Book book)
         {
             try
             {
-                User addedUsers = _userService.AddUser(user);
-                return StatusCode(StatusCodes.Status200OK, addedUsers);
+                Book addedBooks = _bookService.AddBook(book);
+                return StatusCode(StatusCodes.Status200OK, addedBooks);
             }
             catch (Exception ex)
             {
@@ -47,13 +46,13 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpPut("updateUser/{id}")]
-        public IActionResult UpdateUser([FromBody] User user)
+        [HttpPut("updateBook/{id}")]
+        public IActionResult UpdateBook([FromBody] Book book)
         {
             try
             {
-                User updatedUsers = _userService.UpdateUser(user);
-                return StatusCode(StatusCodes.Status200OK, updatedUsers);
+                Book UpdatedBook = _bookService.UpdateBook(book);
+                return StatusCode(StatusCodes.Status200OK, UpdatedBook);
             }
             catch (Exception ex)
             {
@@ -62,13 +61,13 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpDelete("DeleteUser/{id}")]
-        public IActionResult DeleteUser([FromRoute] int userID)
+        [HttpDelete("DeleteBook/{id}")]
+        public IActionResult DeleteBook([FromRoute] int bookID)
         {
             try
             {
-                int deletedUserID = _userService.DeleteUser(userID);
-                return StatusCode(StatusCodes.Status200OK, deletedUserID);
+                int deletedBookID = _bookService.DeleteBook(bookID);
+                return StatusCode(StatusCodes.Status200OK, deletedBookID);
             }
             catch (Exception ex)
             {
@@ -78,4 +77,3 @@ namespace WebApi_ShoppingOnline.Controllers
         }
     }
 }
-
