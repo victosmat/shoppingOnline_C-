@@ -1,35 +1,88 @@
-﻿using WebApi_ShoppingOnline.Entity;
-using WebApi_ShoppingOnline.Repository.UserRepo;
+﻿using Dapper;
+using MySqlConnector;
+using System.Data.Common;
+using WebApi_ShoppingOnline.Entity;
+using WebApi_ShoppingOnline.Repository;
 
 namespace WebApi_ShoppingOnline.Service.UserService
 {
     public class UserService : IUserService
     {
-        private UserRepository _userRepo;
-
-        public UserService()
-        {
-            _userRepo = new UserRepository();
-        }
+        static private string connectionString = DBConnection.ConnectionString;
+        private MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
+        private DynamicParameters parameters = new DynamicParameters();
 
         public User AddUser(User user)
         {
-            return _userRepo.AddUser(user);
+            string stmUser = "insert into users (name, username, password, address, dateOfBirth, phoneNumber, email, gender, position)" +
+                " values (@name, @username, @password, @address, @dateOfBirth, @phoneNumber, @email, @gender, @position);";
+            parameters.Add("@name", user.Name);
+            parameters.Add("@username", user.Username);
+            parameters.Add("@password", user.Password);
+            parameters.Add("@address", user.Address);
+            parameters.Add("@dateOfBirth", user.DateOfBirth);
+            parameters.Add("@phoneNumber", user.PhoneNumber);
+            parameters.Add("@email", user.Email);
+            parameters.Add("@gender", user.Gender);
+            parameters.Add("@position", user.Position);
+            mySqlConnection.Execute(stmUser, parameters);
+
+            // thêm giỏ hàng mới sau khi thêm user
+            string stmUserID = "select id from users;";
+            var users = mySqlConnection.Query<int>(stmUserID).ToList();
+            int userMaxId = 1;
+            foreach (int x in users) if (x > userMaxId) userMaxId = x;
+
+            parameters = new DynamicParameters();
+            mySqlConnection = new MySqlConnection(connectionString);
+            string stmCart = "insert into carts (user_id) values (@user_id);";
+            parameters.Add("@user_id", userMaxId);
+            mySqlConnection.Execute(stmCart, parameters);
+
+            return user;
         }
 
         public int DeleteUser(int userID)
         {
-            return _userRepo.DeleteUser(userID);
+            //xoá giỏ hàng của user
+            parameters = new DynamicParameters();
+            mySqlConnection = new MySqlConnection(connectionString);
+            string stmDeleteUserInCart = "delete from carts where user_id = @user_id";
+            parameters.Add("@user_id", userID);
+            mySqlConnection.Execute(stmDeleteUserInCart, parameters);
+
+            parameters = new DynamicParameters();
+            mySqlConnection = new MySqlConnection(connectionString);
+            String stm = "delete from users where id = @id";
+            parameters.Add("@id", userID);
+            mySqlConnection.Execute(stm, parameters);
+
+            return userID;
         }
 
         public List<User> GetUsers()
         {
-            return _userRepo.GetUsers();
+            string stm = "select * from users";
+            List<User> users = mySqlConnection.Query<User>(stm).ToList();
+            return users;
         }
 
         public User UpdateUser(User user)
         {
-            return _userRepo.UpdateUser(user);
+            String stm = "UPDATE users SET name = @name, username = @username, password = @password, address = @address, dateOfBirth = @dateOfBirth, phoneNumber = @phoneNumber, email = @email, gender = @gender, position = @position " +
+                                             "WHERE id = @id;";
+            parameters.Add("@id", user.Id);
+            parameters.Add("@name", user.Name);
+            parameters.Add("@username", user.Username);
+            parameters.Add("@password", user.Password);
+            parameters.Add("@address", user.Address);
+            parameters.Add("@dateOfBirth", user.DateOfBirth);
+            parameters.Add("@phoneNumber", user.PhoneNumber);
+            parameters.Add("@email", user.Email);
+            parameters.Add("@gender", user.Gender);
+            parameters.Add("@position", user.Position);
+            mySqlConnection.Execute(stm, parameters);
+            return user;
         }
     }
 }

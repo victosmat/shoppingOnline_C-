@@ -13,15 +13,8 @@ create table users (
     position varchar(50) not null
 );
 
-insert into users(name, username, password, address, dateOfBirth, phoneNumber, email, gender, position)  
-values ("Lê Tuấn Minh", "miglee", "189", "Thái Bình", "2001-09-18", "01234566789", "minhlt@gmail.com", "nam", "admin");
-
-insert into users(name, username, password, address, dateOfBirth, phoneNumber, email, gender, position)  
-values ("Lê Minh Long", "long", "261", "Thái Bình", "2001-01-26", "01234566789", "longlm@gmail.com", "nam", "customer");
-
 create table carts(
 	id int auto_increment primary key,
-    amount int not null,
     user_id int,
     foreign key (user_id) references users(id)
 );
@@ -38,6 +31,7 @@ create table books(
 create table cart_book(
 	cart_id int,
     book_id int,
+    number_of_books int not null,
     foreign key (cart_id) references carts(id),
     foreign key (book_id) references books(id)
 );
@@ -49,3 +43,4 @@ create table orders(
     cart_id int,
     foreign key (cart_id) references carts(id)
 );
+

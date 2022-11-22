@@ -31,6 +31,49 @@ namespace WebApi_ShoppingOnline.Controllers
 
             }
         }
+        [HttpGet("GetBookByCategory/{bookCategory}")]
+        public IActionResult GetBookByCategory(string bookCategory)
+        {
+            try
+            {
+                List<Book> books = _bookService.GetBookByCategory(bookCategory);
+                return StatusCode(StatusCodes.Status200OK, books);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+
+            }
+        }
+        [HttpGet("GetBooksById/{bookID}")]
+        public IActionResult GetBooksById(int bookID)
+        {
+            try
+            {
+                List<Book> books = _bookService.GetBooksById(bookID);
+                return StatusCode(StatusCodes.Status200OK, books);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+            }
+        }
+        [HttpGet("GetBookByKeyword/{bookKeyword}")]
+        public IActionResult GetBookByKeyword(string bookKeyword)
+        {
+            try
+            {
+                List<Book> books = _bookService.GetBookByKeyword(bookKeyword);
+                return StatusCode(StatusCodes.Status200OK, books);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+            }
+        }
         [HttpPost("InsertBook")]
         public IActionResult AddBook([FromBody] Book book)
         {

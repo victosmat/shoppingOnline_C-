@@ -47,7 +47,7 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpPut("updateUser/{id}")]
+        [HttpPut("updateUser")]
         public IActionResult UpdateUser([FromBody] User user)
         {
             try
@@ -62,7 +62,7 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpDelete("DeleteUser/{id}")]
+        [HttpDelete("DeleteUser/{userID}")]
         public IActionResult DeleteUser([FromRoute] int userID)
         {
             try
