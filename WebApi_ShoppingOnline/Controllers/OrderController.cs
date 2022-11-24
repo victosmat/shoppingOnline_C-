@@ -15,11 +15,12 @@ namespace WebApi_ShoppingOnline.Controllers
             _orderService = new OrderService();
         }
 
-        [HttpPost("AddBookInCartToOrder")]
-        public IActionResult AddBookInCartToOrder(Cart cart, List<Book> books)
+        [HttpGet("AddBookInCartToOrder")]
+        public IActionResult AddBookInCartToOrder([FromBody] List<Book> books)
         {
             try
             {
+                Cart cart = null;
                 Boolean checkAdd = _orderService.AddBookInCartToOrder(cart, books);
                 return StatusCode(StatusCodes.Status200OK, checkAdd);
             }

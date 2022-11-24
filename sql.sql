@@ -25,7 +25,7 @@ create table books(
     author varchar(50) not null,
     price float(10) not null,
     category varchar(50) not null,
-    image_url varchar(50) not null
+    image_url varchar(100) not null
 );
 
 create table cart_book(
@@ -43,4 +43,6 @@ create table orders(
     cart_id int,
     foreign key (cart_id) references carts(id)
 );
+
+insert into books (name, author, price, category, image_url) values ("bách khoa toàn thư", "bách khoa", 100000, "khoa học", "D:\study\LapTrinhWeb\Du_an_btl\WebApi_ShoppingOnline\WebApi_ShoppingOnline\Image\1.jpg");
 

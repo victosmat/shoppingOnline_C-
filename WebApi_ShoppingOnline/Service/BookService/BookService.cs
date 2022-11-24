@@ -49,22 +49,22 @@ namespace WebApi_ShoppingOnline.Service.BookService
         {
             string stm = "select * from books where category = @category;";
             parameters.Add("@category", bookCategory);
-            List<Book> books = mySqlConnection.Query<Book>(stm).ToList();
+            List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
         }
 
         public List<Book> GetBookByKeyword(string bookKeyword)
         {
-            string stm = "select * from books where salary like '%" + "@bookKeyword" + "%';";
-            parameters.Add("@bookKeyword", bookKeyword);
-            List<Book> books = mySqlConnection.Query<Book>(stm).ToList();
+            string stm = "select * from books where name like @bookKeyword;";
+            parameters.Add("@bookKeyword", "%" + bookKeyword + "%");
+            List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
         }
 
         public List<Book> GetBooks()
         {
             string stm = "select * from books";
-            List<Book> books = mySqlConnection.Query<Book>(stm).ToList();
+            List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
         }
 
@@ -72,7 +72,7 @@ namespace WebApi_ShoppingOnline.Service.BookService
         {
             string stm = "select * from books where id = @id;";
             parameters.Add("@id", bookID);
-            List<Book> books = mySqlConnection.Query<Book>(stm).ToList();
+            List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
         }
 

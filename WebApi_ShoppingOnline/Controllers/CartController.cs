@@ -30,11 +30,12 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpPut("AddBooksToCart")]
-        public IActionResult AddBooksToCart(Cart cart, Book book, int NumberOfBooks)
+        [HttpPost("AddBooksToCart")]
+        public IActionResult AddBooksToCart([FromBody] Cart cart, int NumberOfBooks)
         {
             try
             {
+                Book book = null;
                 Boolean checkAdd = _cartService.AddBooksToCart(cart, book, NumberOfBooks);
                 if (checkAdd) return StatusCode(StatusCodes.Status200OK, checkAdd);
                 else return StatusCode(StatusCodes.Status422UnprocessableEntity, "Dữ liệu không được xác thực");
