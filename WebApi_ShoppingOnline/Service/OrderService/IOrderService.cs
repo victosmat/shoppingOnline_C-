@@ -4,6 +4,6 @@ namespace WebApi_ShoppingOnline.Service.OrderService
 {
     public interface IOrderService
     {
-        Boolean AddBookInCartToOrder(Cart cart, List<Book> books);
+        List<Order> AddBookInCartToOrder(int cartID, List<Book> books);
     }
 }

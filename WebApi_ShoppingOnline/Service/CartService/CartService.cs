@@ -10,11 +10,11 @@ namespace WebApi_ShoppingOnline.Service.CartService
         static private string connectionString = DBConnection.ConnectionString;
         private MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
         private DynamicParameters parameters = new DynamicParameters();
-        public Boolean AddBooksToCart(Cart cart, Book book, int NumberOfBooks)
+        public Boolean AddBooksToCart(int cartID, Book book, int NumberOfBooks)
         {
             //báo lỗi khi cartID và bookID đã có trong cart_book
             string stmTest = "select * from cart_book where cart_id = @cart_id and book_id = @book_id;";
-            parameters.Add("@cart_id", cart.Id);
+            parameters.Add("@cart_id", cartID);
             parameters.Add("@book_id", book.Id);
             int numberOfAffectedRows = mySqlConnection.Execute(stmTest, parameters);
             if (numberOfAffectedRows == 0)
@@ -23,7 +23,7 @@ namespace WebApi_ShoppingOnline.Service.CartService
                 parameters = new DynamicParameters();
                 string stmAddCartBook = "insert into cart_book (cart_id, book_id, mumber_of_books)" +
                         "values (@cart_id, @book_id, @number_of_books);";
-                parameters.Add("@cart_id", cart.Id);
+                parameters.Add("@cart_id", cartID);
                 parameters.Add("@book_id", book.Id);
                 parameters.Add("@mumber_of_books", NumberOfBooks);
                 mySqlConnection.Execute(stmAddCartBook, parameters);

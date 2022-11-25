@@ -16,13 +16,12 @@ namespace WebApi_ShoppingOnline.Controllers
         }
 
         [HttpGet("AddBookInCartToOrder")]
-        public IActionResult AddBookInCartToOrder([FromBody] List<Book> books)
+        public IActionResult AddBookInCartToOrderAndPay([FromRoute] int cartID, [FromBody] List<Book> books)
         {
             try
             {
-                Cart cart = null;
-                Boolean checkAdd = _orderService.AddBookInCartToOrder(cart, books);
-                return StatusCode(StatusCodes.Status200OK, checkAdd);
+                List<Order> order = _orderService.AddBookInCartToOrder(cartID, books);
+                return StatusCode(StatusCodes.Status200OK, order);
             }
             catch (Exception ex)
             {

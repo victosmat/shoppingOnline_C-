@@ -5,7 +5,7 @@ namespace WebApi_ShoppingOnline.Service.CartService
 {
     public interface ICartService
     {
-        Boolean AddBooksToCart(Cart cart, Book book, int NumberOfBooks);
+        Boolean AddBooksToCart(int cartID, Book book, int NumberOfBooks);
         List<CartBook> GetCartBooks();
     }
 }
