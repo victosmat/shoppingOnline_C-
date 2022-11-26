@@ -27,7 +27,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
 
             }
         }
@@ -42,7 +42,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
 
             }
         }
@@ -57,7 +57,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
         [HttpGet("GetBookByKeyword/{bookKeyword}")]
@@ -71,7 +71,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
         [HttpPost("InsertBook")]
@@ -80,16 +80,16 @@ namespace WebApi_ShoppingOnline.Controllers
             try
             {
                 Book addedBooks = _bookService.AddBook(book);
-                return StatusCode(StatusCodes.Status200OK, addedBooks);
+                return StatusCode(StatusCodes.Status201Created, addedBooks);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
 
-        [HttpPut("updateBook/{id}")]
+        [HttpPut("updateBook")]
         public IActionResult UpdateBook([FromBody] Book book)
         {
             try
@@ -100,11 +100,11 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
 
-        [HttpDelete("DeleteBook/{id}")]
+        [HttpDelete("DeleteBook/{bookID}")]
         public IActionResult DeleteBook([FromRoute] int bookID)
         {
             try
@@ -115,7 +115,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
     }

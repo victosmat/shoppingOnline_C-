@@ -12,27 +12,16 @@ namespace WebApi_ShoppingOnline.Service.BookService
         private MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
         private DynamicParameters parameters = new DynamicParameters();
 
-        public static byte[] GetPhoto(string filePath)
-        {
-            FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            BinaryReader reader = new BinaryReader(stream);
-            byte[] photo = reader.ReadBytes((int)stream.Length);
-            reader.Close();
-            stream.Close();
-            return photo;
-        }
-
         public Book AddBook(Book book)
         {
             // chuyển thành dạng byte
-            byte[] image = GetPhoto(book.ImageUrl);
-            string stm = "insert into users (name, author, price , category, image_url)" +
-                            " values (@name, @author, @price, @category, @image_url);";
+            string stm = "insert into books (name, author, price , category, imageUrl)" +
+                            " values (@name, @author, @price, @category, @imageUrl);";
             parameters.Add("@name", book.Name);
             parameters.Add("@author", book.Author);
             parameters.Add("@price", book.Price);
             parameters.Add("@category", book.Category);
-            parameters.Add("@image_url", image);
+            parameters.Add("@imageUrl", book.ImageUrl);
             mySqlConnection.Execute(stm, parameters);
             return book;
         }
@@ -78,14 +67,14 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public Book UpdateBook(Book book)
         {
-            string stm = "UPDATE books SET name = @name, author = @author, price = @price, category = @category, image_url = @image_url" +
-                                                         "WHERE id = @id;";
+            string stm = "UPDATE books SET name = @name, author = @author, price = @price, category = @category, imageUrl = @imageUrl" +
+                                                         " WHERE id = @id;";
             parameters.Add("@id", book.Id);
             parameters.Add("@name", book.Name);
             parameters.Add("@author", book.Author);
             parameters.Add("@price", book.Price);
             parameters.Add("@category", book.Category);
-            parameters.Add("@image_url", book.ImageUrl);
+            parameters.Add("@imageUrl", book.ImageUrl);
             mySqlConnection.Execute(stm, parameters);
             return book;
         }

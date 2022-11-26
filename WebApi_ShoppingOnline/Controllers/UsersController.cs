@@ -28,7 +28,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
 
             }
         }
@@ -38,12 +38,12 @@ namespace WebApi_ShoppingOnline.Controllers
             try
             {
                 User addedUsers = _userService.AddUser(user);
-                return StatusCode(StatusCodes.Status200OK, addedUsers);
+                return StatusCode(StatusCodes.Status201Created, addedUsers);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
 
@@ -58,7 +58,7 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
 
@@ -73,7 +73,23 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
+        [HttpPost("CheckLogin")]
+        public IActionResult CheckLogin(string username, string password)
+        {
+            try
+            {
+                Boolean checkUser = _userService.CheckUser(username, password);
+                if (checkUser == false) return StatusCode(StatusCodes.Status400BadRequest, "Invalid input");
+                else return StatusCode(StatusCodes.Status200OK, checkUser);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
     }

@@ -15,18 +15,18 @@ namespace WebApi_ShoppingOnline.Controllers
             _orderService = new OrderService();
         }
 
-        [HttpGet("AddBookInCartToOrder")]
-        public IActionResult AddBookInCartToOrderAndPay([FromRoute] int cartID, [FromBody] List<Book> books)
+        [HttpPost("AddBookInCartToOrderAndPay")]
+        public IActionResult AddBookInCartToOrderAndPay([FromBody] List<int> cartBookIDs)
         {
             try
             {
-                List<Order> order = _orderService.AddBookInCartToOrder(cartID, books);
+                Order order = _orderService.AddBookInCartToOrderAndPay(cartBookIDs);
                 return StatusCode(StatusCodes.Status200OK, order);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
     }

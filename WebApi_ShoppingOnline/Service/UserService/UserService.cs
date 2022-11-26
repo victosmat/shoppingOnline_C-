@@ -35,11 +35,21 @@ namespace WebApi_ShoppingOnline.Service.UserService
 
             parameters = new DynamicParameters();
             mySqlConnection = new MySqlConnection(connectionString);
-            string stmCart = "insert into carts (user_id) values (@user_id);";
-            parameters.Add("@user_id", userMaxId);
+            string stmCart = "insert into carts (userID) values (@userID);";
+            parameters.Add("@userID", userMaxId);
             mySqlConnection.Execute(stmCart, parameters);
 
             return user;
+        }
+
+        public Boolean CheckUser(string username, string password)
+        {
+            string stmCheckUser = "select * from users where username = @username and password = @password;";
+            parameters.Add("@username", username);
+            parameters.Add("@password", password);
+            var users = mySqlConnection.Query<User>(stmCheckUser, parameters).ToList();
+            if (users.Count == 0) return false;
+            return true;
         }
 
         public int DeleteUser(int userID)
@@ -47,8 +57,8 @@ namespace WebApi_ShoppingOnline.Service.UserService
             //xoá giỏ hàng của user
             parameters = new DynamicParameters();
             mySqlConnection = new MySqlConnection(connectionString);
-            string stmDeleteUserInCart = "delete from carts where user_id = @user_id";
-            parameters.Add("@user_id", userID);
+            string stmDeleteUserInCart = "delete from carts where userID = @userID";
+            parameters.Add("@userID", userID);
             mySqlConnection.Execute(stmDeleteUserInCart, parameters);
 
             parameters = new DynamicParameters();
@@ -82,6 +92,12 @@ namespace WebApi_ShoppingOnline.Service.UserService
             parameters.Add("@gender", user.Gender);
             parameters.Add("@position", user.Position);
             mySqlConnection.Execute(stm, parameters);
+
+            parameters = new DynamicParameters();
+            mySqlConnection = new MySqlConnection(connectionString);
+            string stmUser = "select * from users where id = @userID;";
+            parameters.Add("@userID", user.Id);
+            user = mySqlConnection.QueryFirstOrDefault<User>(stmUser, parameters);
             return user;
         }
     }

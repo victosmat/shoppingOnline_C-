@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public float TotalPrice { get; set; }
-        public Cart Cart { get; set; }
+        public int CartID { get; set; }
     }
 }

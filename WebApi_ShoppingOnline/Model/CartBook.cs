@@ -3,8 +3,8 @@
     public class CartBook
     {
         public int Id { get; set; }
-        public Cart Cart { get; set; }
-        public Book Book { get; set; }
+        public int CartID { get; set; }
+        public int BookID { get; set; }
         public int NumberOfBooks { get; set; }
     }
 }

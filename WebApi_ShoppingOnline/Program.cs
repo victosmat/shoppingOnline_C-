@@ -20,6 +20,11 @@ if (app.Environment.IsDevelopment())
 
 DBConnection.ConnectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

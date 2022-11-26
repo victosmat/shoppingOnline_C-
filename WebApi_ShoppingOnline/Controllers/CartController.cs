@@ -26,23 +26,53 @@ namespace WebApi_ShoppingOnline.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
 
-        [HttpPost("AddBooksToCart/{cartID}")]
-        public IActionResult AddBooksToCart([FromRoute] int cartID,[FromBody] Book book, int NumberOfBooks)
+        [HttpPost("AddBooksToCart/{cartID}/{bookID}")]
+        public IActionResult AddBooksToCart([FromRoute] int cartID, [FromRoute] int bookID, int NumberOfBooks)
         {
             try
             {
-                Boolean checkAdd = _cartService.AddBooksToCart(cartID, book, NumberOfBooks);
-                if (checkAdd) return StatusCode(StatusCodes.Status200OK, checkAdd);
-                else return StatusCode(StatusCodes.Status422UnprocessableEntity, "Dữ liệu không được xác thực");
+                Boolean checkAdd = _cartService.AddBooksToCart(cartID, bookID, NumberOfBooks);
+                if (checkAdd) return StatusCode(StatusCodes.Status201Created, checkAdd);
+                else return StatusCode(StatusCodes.Status400BadRequest, "books already exist");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "có lỗi xảy ra");
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
+        [HttpPut("UpdateNumberOfBookInCart/{cartBookID}/{numberOfBookInCart}")]
+        public IActionResult UpdateNumberOfBookInCart([FromRoute] int cartBookID, [FromRoute] int numberOfBookInCart)
+        {
+            try
+            {
+                CartBook cartBook = _cartService.UpdateNumberOfBookInCart(cartBookID, numberOfBookInCart);
+                return StatusCode(StatusCodes.Status200OK, cartBook);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
+        [HttpDelete("DeleteBooksInCart/{cartBookID}")]
+        public IActionResult DeleteBooksInCart([FromRoute] int cartBookID)
+        {
+            try
+            {
+                int deletedCartBookID = _cartService.DeleteBooksInCart(cartBookID);
+                return StatusCode(StatusCodes.Status200OK, deletedCartBookID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
             }
         }
     }
