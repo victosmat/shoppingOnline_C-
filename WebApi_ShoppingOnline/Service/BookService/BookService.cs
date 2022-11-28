@@ -14,7 +14,6 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public Book AddBook(Book book)
         {
-            // chuyển thành dạng byte
             string stm = "insert into books (name, author, price , category, imageUrl)" +
                             " values (@name, @author, @price, @category, @imageUrl);";
             parameters.Add("@name", book.Name);
