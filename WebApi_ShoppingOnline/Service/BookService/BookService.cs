@@ -44,7 +44,7 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public List<Book> GetBookByKeyword(string bookKeyword)
         {
-            string stm = "select * from books where name like @bookKeyword;";
+            string stm = "select * from books where name like @bookKeyword or author like @bookKeyword or category like @bookKeyword;";
             parameters.Add("@bookKeyword", "%" + bookKeyword + "%");
             List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
