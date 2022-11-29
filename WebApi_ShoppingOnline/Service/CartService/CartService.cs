@@ -42,7 +42,7 @@ namespace WebApi_ShoppingOnline.Service.CartService
 
         public List<CartBook> GetCartBooks()
         {
-            string stm = "select * from cart_book";
+            string stm = "select * from cart_book;";
             List<CartBook> cartBooks = mySqlConnection.Query<CartBook>(stm).ToList();
             return cartBooks;
         }
