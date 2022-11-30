@@ -16,6 +16,21 @@ namespace WebApi_ShoppingOnline.Controllers
             _userService = new UserService();
         }
 
+        [HttpGet("GetUserByKeyword/{userKeyword}")]
+        public IActionResult GetUserByKeyword(string userKeyword)
+        {
+            try
+            {
+                List<User> users = _userService.GetUserByKeyword(userKeyword);
+                return StatusCode(StatusCodes.Status200OK, users);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
         [HttpGet("GetUser")]
         public IActionResult GetAllUsers()
         {
