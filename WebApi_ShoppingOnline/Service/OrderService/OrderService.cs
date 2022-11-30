@@ -32,7 +32,7 @@ namespace WebApi_ShoppingOnline.Service.OrderService
                 string stmBook = "select * from books where id = @id;";
                 parameters.Add("@id", cartBook.BookID);
                 Book book = mySqlConnection.QueryFirstOrDefault<Book>(stmBook, parameters);
-                totalPrice += book.Price;
+                totalPrice += book.Price * cartBook.NumberOfBooks;
 
                 // xoá sách trong giỏ hàng
                 mySqlConnection = new MySqlConnection(connectionString);

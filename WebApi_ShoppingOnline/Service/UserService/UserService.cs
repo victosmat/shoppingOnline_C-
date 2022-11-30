@@ -70,6 +70,14 @@ namespace WebApi_ShoppingOnline.Service.UserService
             return userID;
         }
 
+        public List<User> GetUserByKeyword(string userKeyword)
+        {
+            string stm = "select * from users where name like @userKeyword or address like @userKeyword or phoneNumber like @userKeyword or email like @userKeyword or position like @userKeyword;";
+            parameters.Add("@bookKeyword", "%" + userKeyword + "%");
+            List<User> users = mySqlConnection.Query<User>(stm, parameters).ToList();
+            return users;
+        }
+
         public List<User> GetUsers()
         {
             string stm = "select * from users";

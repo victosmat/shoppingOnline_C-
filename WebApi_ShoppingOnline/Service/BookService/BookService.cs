@@ -14,7 +14,6 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public Book AddBook(Book book)
         {
-            // chuyển thành dạng byte
             string stm = "insert into books (name, author, price , category, imageUrl)" +
                             " values (@name, @author, @price, @category, @imageUrl);";
             parameters.Add("@name", book.Name);
@@ -44,7 +43,7 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public List<Book> GetBookByKeyword(string bookKeyword)
         {
-            string stm = "select * from books where name like @bookKeyword;";
+            string stm = "select * from books where name like @bookKeyword or author like @bookKeyword or category like @bookKeyword;";
             parameters.Add("@bookKeyword", "%" + bookKeyword + "%");
             List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
@@ -63,6 +62,13 @@ namespace WebApi_ShoppingOnline.Service.BookService
             parameters.Add("@id", bookID);
             List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
+        }
+
+        public List<string> GetCategory()
+        {
+            string stm = "select category from books group by category;";
+            List<string> categorys = mySqlConnection.Query<string>(stm, parameters).ToList();
+            return categorys;
         }
 
         public Book UpdateBook(Book book)
