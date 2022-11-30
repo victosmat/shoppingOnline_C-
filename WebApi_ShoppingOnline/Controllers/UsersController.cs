@@ -77,14 +77,15 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpPost("CheckLogin")]
-        public IActionResult CheckLogin(string username, string password)
+        [HttpPost("Signin")]
+        public IActionResult Signin([FromBody] Signin signin)
         {
             try
             {
-                Boolean checkUser = _userService.CheckUser(username, password);
-                if (checkUser == false) return StatusCode(StatusCodes.Status400BadRequest, "Invalid input");
-                else return StatusCode(StatusCodes.Status200OK, checkUser);
+                User user = _userService.CheckUser(signin.Username, signin.Password);
+                
+                if (user == null) return StatusCode(StatusCodes.Status400BadRequest, "Invalid input");
+                else return StatusCode(StatusCodes.Status200OK, user);
             }
             catch (Exception ex)
             {
@@ -95,3 +96,9 @@ namespace WebApi_ShoppingOnline.Controllers
     }
 }
 
+
+public class Signin{
+    public String Username {get; set;}
+    public String Password { get; set; }
+
+}

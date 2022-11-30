@@ -42,14 +42,14 @@ namespace WebApi_ShoppingOnline.Service.UserService
             return user;
         }
 
-        public Boolean CheckUser(string username, string password)
+        public User CheckUser(string username, string password)
         {
             string stmCheckUser = "select * from users where username = @username and password = @password;";
             parameters.Add("@username", username);
             parameters.Add("@password", password);
             var users = mySqlConnection.Query<User>(stmCheckUser, parameters).ToList();
-            if (users.Count == 0) return false;
-            return true;
+            if (users.Count > 0) return users[0];
+            return null;
         }
 
         public int DeleteUser(int userID)
