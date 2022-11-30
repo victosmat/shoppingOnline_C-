@@ -31,6 +31,22 @@ namespace WebApi_ShoppingOnline.Controllers
 
             }
         }
+        [HttpGet("GetCategory")]
+        public IActionResult GetCategory()
+        {
+
+            try
+            {
+                List<string> categorys = _bookService.GetCategory();
+                return StatusCode(StatusCodes.Status200OK, categorys);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+
+            }
+        }
         [HttpGet("GetBookByCategory/{bookCategory}")]
         public IActionResult GetBookByCategory(string bookCategory)
         {

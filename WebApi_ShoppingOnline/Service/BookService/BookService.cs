@@ -64,6 +64,13 @@ namespace WebApi_ShoppingOnline.Service.BookService
             return books;
         }
 
+        public List<string> GetCategory()
+        {
+            string stm = "select category from books group by category;";
+            List<string> categorys = mySqlConnection.Query<string>(stm, parameters).ToList();
+            return categorys;
+        }
+
         public Book UpdateBook(Book book)
         {
             string stm = "UPDATE books SET name = @name, author = @author, price = @price, category = @category, imageUrl = @imageUrl" +
