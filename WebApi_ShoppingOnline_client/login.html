@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="wapper">
+        <div class="wapper-heading">
+            <h1>Member Login</h1>
+        </div>
+        <div class="input__field">
+            <input id="username" type="text" placeholder="User Name" />
+        </div>
+        <div class="input__field">
+            <input id="password" type="password" placeholder="Password" />
+        </div>
+        <button class="btn btn-login" id="submit" style="font-size: 20px;"">Login</button>
+        <a href="sigup.html" class="signup-link">Sign Up</a>
+    </div>
+    <script src="./fecth.js"></script>
+    <script>
+        const i_username = document.getElementById("username");
+        const i_password = document.getElementById("password");
+
+        const submit = document.getElementById("submit");
+        console.log(i_password.value)
+        submit.addEventListener("click", async () => {
+            const data = await _fecth.post('/api/Users/Signin', {
+                password: i_password.value, username: i_username.value
+            })
+
+            if (!data) {
+                console.log("DATA", data)
+                return;
+            }
+             window.location = "/index.html";
+        })
+
+    </script>
+</body>
+
+</html>

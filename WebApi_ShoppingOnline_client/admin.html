@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Prudential Book Store</title>
+</head>
+
+<body>
+    <!-- Top Nav -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2><a href="index.html">Prudential Book Store</a></h2>
+                <p>Your one stop book shop</p>
+            </div>
+        </div>
+    </header>
+    <div>
+        <button id="user">Users</button>
+        <button id="book">Books</button>
+    </div>
+    <div class="search-box">
+        <input type="search" placeholder="Search Books" />
+        <i class="fas fa-search"></i>
+    </div>
+    <div id="table">
+
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+        </div>
+    </footer>
+</body>
+<script>
+    const user = document.getElementById("user");
+    const book = document.getElementById("book");
+    const table = document.getElementById("table");
+    user.addEventListener("click", () => {
+        table.innerHTML = `
+             <div>User</div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>minh</td>
+                    <td>ml</td>
+                    <td>HN</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </table>
+        `
+    })
+
+
+    book.addEventListener("click", () => {
+            table.innerHTML = `
+             <div>Book</div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>minh</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </table>
+        `
+        })
+</script>
+
+</html>
