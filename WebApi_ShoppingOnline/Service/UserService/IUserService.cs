@@ -8,7 +8,7 @@ namespace WebApi_ShoppingOnline.Service.UserService
         User AddUser(User user);
         User UpdateUser(User user);
         int DeleteUser(int userID);
-        Boolean CheckUser(string username, string password);
+        User CheckUser(string username, string password);
         List<User> GetUserByKeyword(string userKeyword);
     }
 }
