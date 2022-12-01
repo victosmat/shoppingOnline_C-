@@ -236,12 +236,7 @@ main .book-section-container .book-section .card-wraper .card .btn-primary {
   width: 100px;
 }
 
-main
-  .book-section-container
-  .book-section
-  .card-wraper
-  .card
-  .btn-primary:hover {
+main .book-section-container .book-section .card-wraper .card .btn-primary:hover {
   background: #fff;
   color: var(--button-primary);
   border: 1px solid var(--button-primary);
@@ -372,4 +367,5 @@ footer .container {
   -ms-flex-align: center;
   align-items: center;
 }
+
 /*# sourceMappingURL=style.css.map */

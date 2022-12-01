@@ -12,7 +12,7 @@
 <body>
     <div class="wapper">
         <div class="wapper-heading">
-            <h1>Member Login oke</h1>
+            <h1>Member Login</h1>
         </div>
         <div class="input__field">
             <input id="username" type="text" placeholder="User Name" />
@@ -21,28 +21,10 @@
             <input id="password" type="password" placeholder="Password" />
         </div>
         <button class="btn btn-login" id="submit" style="font-size: 20px;"">Login</button>
-        <a href=" sigup.html" class="signup-link">Sign Up</a>
+        <a href=" ../sigup/sigup.html" class="signup-link">Sign Up</a>
     </div>
     <script src="./fecth.js"></script>
-    <script>
-        const i_username = document.getElementById("username");
-        const i_password = document.getElementById("password");
-
-        const submit = document.getElementById("submit");
-        console.log(i_password.value)
-        submit.addEventListener("click", async () => {
-            const data = await _fecth.post('/api/Users/Signin', {
-                password: i_password.value, username: i_username.value
-            })
-
-            if (!data) {
-                console.log("DATA", data)
-                return;
-            }
-            window.location = "/index.html";
-        })
-
-    </script>
+    <script src="funtion.js"></script>
 </body>
 
 </html>

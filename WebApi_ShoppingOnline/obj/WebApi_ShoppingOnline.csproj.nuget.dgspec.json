@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj": {}
+    "D:\\Code\\myProject\\c#\\webApi_shoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj": {}
   },
   "projects": {
-    "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj": {
+    "D:\\Code\\myProject\\c#\\webApi_shoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj",
+        "projectUniqueName": "D:\\Code\\myProject\\c#\\webApi_shoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj",
         "projectName": "WebApi_ShoppingOnline",
-        "projectPath": "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj",
-        "packagesPath": "C:\\Users\\Le Tuan Minh\\.nuget\\packages\\",
-        "outputPath": "D:\\study\\LapTrinhWeb\\Du_an_btl\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline\\obj\\",
+        "projectPath": "D:\\Code\\myProject\\c#\\webApi_shoppingOnline\\WebApi_ShoppingOnline\\WebApi_ShoppingOnline.csproj",
+        "packagesPath": "C:\\Users\\THANH\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\myProject\\c#\\webApi_shoppingOnline\\WebApi_ShoppingOnline\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Le Tuan Minh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\THANH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
