@@ -1,0 +1,295 @@
+.input {
+  border: 1px solid #cccccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.input-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.input:focus {
+  background-color: #f5f5f5;
+  border: 1px solid #0dd469;
+}
+.label {
+  font-size: 13px;
+  color: #757575;
+  margin-right: 12px;
+}
+.input-unit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-unit__unit {
+  margin-bottom: 12px;
+  background-color: #f5f5f5;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cccccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  color: #757575;
+}
+
+.input-unit__input {
+  border-radius: 4px 0 0 4px;
+}
+.input-radio {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  margin-right: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+.input-radio__input {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+}
+.input-radio__checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  z-index: -1;
+  background-position: 0px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../assets/Icons/ic_Ratio_Inactive.png);
+}
+
+.input-radio:hover > .input-radio__checkmark {
+  background-image: url(../../assets/Icons/ic_Ratio_Hover.png);
+}
+
+.input-radio__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.input-radio > .input-radio__input:checked ~ .input-radio__checkmark:after {
+  display: block;
+}
+
+.input-radio .input-radio__checkmark:after {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-image: url(../../assets/Icons/ic_Ratio_Active.png);
+}
+.search-input {
+  padding-right: 40px;
+  width: 300px;
+  /* color: #bbbbbb; */
+}
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+.input-container .search-input-icon {
+  color: #cccccc;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  border-left: 1px solid #cccccc;
+  padding-left: 8px;
+  width: 15px;
+  height: 15px;
+}
+.search-input::placeholder {
+  font-family: "OpenSans-Italic";
+  color: #bbbbbb;
+}
+.input-icon {
+  display: flex;
+  align-items: center;
+}
+.input-icon .label {
+  margin-bottom: 12px;
+}
+.input-icon > .input {
+  border-radius: unset;
+}
+.input-icon__icon {
+  background-color: #f5f5f5;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+}
+.input-icon__icon--right {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+.input-icon__icon--left {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+.input-checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  margin-right: 16px;
+  min-height: 20px;
+}
+.input-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  top: 0;
+  z-index: 2;
+  left: 0;
+}
+.input-checkbox__checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 20px;
+  width: 20px;
+  z-index: 1;
+  border-radius: 4px;
+  background-position: 0px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../assets/Icons/ic_Checkbox_Inactive.png);
+}
+.input-checkbox:hover > .input-checkbox__checkmark {
+  background-image: url(../../assets/Icons/ic_Checkbox_Hover.png);
+}
+.input-checbox__input:checked {
+  background-color: #03ae66;
+}
+.input-checkbox > .input-checkbox__input:checked ~ .input-checkbox__checkmark {
+  background-image: url(../../assets/Icons/ic_Checkbox_Active.png);
+}
+.input-checkbox__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.input-checkbox
+  .input-checkbox__input:checked
+  ~ .input-checkbox__checkmark:after {
+  display: block;
+}
+.input-checkbox
+  .input-checkbox__input:checked:disabled
+  ~ .input-checkbox__checkmark {
+  background-color: #f5f5f5;
+  border-color: #cccccc;
+}
+.input-checkbox
+  .input-checkbox__input:checked:disabled
+  ~ .input-checkbox__checkmark::after {
+  background-image: url(../../assets/Icons/ic_Checkbox_Active_Disable.png);
+}
+.input-checkbox .input-checkbox__checkmark:after {
+  background-image: url(../../assets/Icons/ic_Checkbox_Inactive.png);
+}
+.input-checkbox
+  .input-checkbox__input:disabled
+  ~ .input-checkbox__checkmark::after {
+  background-image: url(../../assets/Icons/ic_Checkbox_Inactive_Disable.png);
+}
+.input-switch {
+  display: inline-block;
+  position: relative;
+  padding-left: 38px;
+  margin-bottom: 12px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.input-switch__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  top: 0;
+  left: 0;
+}
+.input-switch__checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 30px;
+  width: 30px;
+  z-index: -1;
+  background-position: 0px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../assets/Icons/ic_Switch_Off.png);
+}
+.input-switch__input:checked ~ .input-switch__checkmark {
+  background-image: url(../../assets/Icons/ic_Switch_On.png);
+}
+.input-error {
+  border-color: #fa3939;
+}
+/* vertical */
+.label-vertical {
+  display: block;
+  margin-bottom: 4px;
+}
+.input-vertical {
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+/* Ẩn mũi tên lên xuống inpur number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input__popover-error {
+  background-color: #fa3939;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(calc(100% + 10px)) translateY(-50%);
+  display: none;
+  z-index: 1;
+}
+.popover-error__arrow-down {
+  background-color: #fa3939;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.input-error:hover ~ .input__popover-error {
+  display: block;
+}
