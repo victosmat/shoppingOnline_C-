@@ -1,0 +1,85 @@
+@import url(base/button.css);
+@import url(base/icon.css);
+@import url(base/input.css);
+@import url(base/select.css);
+@import url(base/tab.css);
+@import url(base/tag.css);
+@import url(base/toast-message.css);
+@import url(base/popup.css);
+@import url(base/table.css);
+@import url(base/modal.css);
+@import url(layout/menu.css);
+@import url(layout/container.css);
+@import url(layout/header.css);
+@import url(layout/content.css);
+
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url(../assets/Fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Semibold";
+  src: url(../assets/Fonts/OpenSans-Semibold.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url(../assets/Fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Italic";
+  src: url(../assets/Fonts/OpenSans-Italic.ttf);
+}
+
+body {
+  font-size: 13px;
+}
+
+* {
+  font-family: "OpenSans-Regular";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 16px;
+  font-family: OpenSans-Semibold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-rigth {
+  text-align: right;
+}
+
+.border-right {
+  border-right: 1px solid #dddddd;
+}
+
+.text-green {
+  color: #03ae66;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.gridAdmin {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 180px);
+}
