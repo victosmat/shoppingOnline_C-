@@ -30,7 +30,7 @@ class Home {
       let cardHtml = $(`<div class="col-3 pb-3">
           <div class="book-card card" style="width: 18rem">
             <img
-              src="../assets//images/deathly-hallows-us-childrens-edition.jpg"
+              src="${book.imageUrl}"
               class="card-img-top"
               alt="..."
             />
