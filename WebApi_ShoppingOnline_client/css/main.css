@@ -83,3 +83,7 @@ a:hover {
   width: 100%;
   height: calc(100vh - 180px);
 }
+
+.pointer {
+  cursor: pointer;
+}

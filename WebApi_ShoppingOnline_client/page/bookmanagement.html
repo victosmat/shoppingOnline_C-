@@ -68,88 +68,13 @@
             PopupId="popupBookDelete"
           >
             <div class="col" Width="50" FieldName="id">ID</div>
-            <div class="col" FieldName="name">Tên sách</div>
-            <div class="col" Width="100" FieldName="author">Tác giả</div>
+            <div class="col" Width="150" FieldName="name">Tên sách</div>
+            <div class="col" Width="150" FieldName="author">Tác giả</div>
             <div class="col" Width="100" FieldName="price">Giá</div>
 
             <div class="col" Width="100" FieldName="category">Thể loại</div>
-            <div class="col" Width="200" FieldName="imageUrl">Ảnh</div>
+            <div class="col" Width="150" FieldName="imageUrl">Ảnh</div>
 
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Tên sách</th>
-                  <th scope="col">Tác giả</th>
-                  <th scope="col">Giá</th>
-                  <th scope="col">Thể loại</th>
-                  <th scope="col">Ảnh</th>
-                  <th style="width: 70px"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td class="text-center">
-                    <div class="table__command">
-                      <div class="command-edit">
-                        <i class="fa-regular fa-pen table-icon-edit"></i>
-                      </div>
-                      <div class="command-delete">
-                        <i
-                          class="fa-regular fa-trash-can table-icon-delete"
-                        ></i>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td class="text-center">
-                    <div class="table__command">
-                      <div class="command-edit">
-                        <i class="fa-regular fa-pen table-icon-edit"></i>
-                      </div>
-                      <div class="command-delete">
-                        <i
-                          class="fa-regular fa-trash-can table-icon-delete"
-                        ></i>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
-                  <td class="text-center">
-                    <div class="table__command">
-                      <div class="command-edit">
-                        <i class="fa-regular fa-pen table-icon-edit"></i>
-                      </div>
-                      <div class="command-delete">
-                        <i
-                          class="fa-regular fa-trash-can table-icon-delete"
-                        ></i>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
             <div class="pagination">
               <img
                 class="page-nav-icon"
@@ -273,7 +198,7 @@
           <button
             CommandPopup="Cancel"
             type="button"
-            class="button button-style2"
+            class="btn btn-outline-secondary"
             tabindex="2"
           >
             Đóng
@@ -281,14 +206,11 @@
           <button
             CommandPopup="Confirm"
             type="button"
-            class="button button-style1"
+            class="btn btn-danger ml-2"
             tabindex="1"
           >
             Đồng ý
           </button>
-        </div>
-        <div class="close-icon-bg btn-cancel-icon">
-          <img src="../assets/Icons/ic_X_2.png" alt="" />
         </div>
       </div>
     </div>

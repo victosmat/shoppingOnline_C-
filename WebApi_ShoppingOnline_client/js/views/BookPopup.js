@@ -5,6 +5,8 @@ class BookPopup {
     me.form = $(`#${formId}`);
     // Khởi tạo các sự kiện
     me.initEvents();
+
+    me.jsCaller = null;
   }
 
   initEvents() {
@@ -60,19 +62,22 @@ class BookPopup {
   }
 
   save() {
+    debugger;
     try {
       let me = this;
-      let data = me.getValueFromForm(),
+      let data = { ...me.getValueFromForm() },
         method = "POST",
         url = "https://localhost:7008/api/Books/InsertBook";
       if (me.formMode === "Edit") {
         method = "PUT";
         url = `https://localhost:7008/api/Books/updateBook`;
+        data = { ...me.getValueFromForm(), id: me.data.id };
       }
       CommonFn.Ajax(url, method, data, "json", function (err, response) {
         if (err) {
           console.log(err);
         } else if (response) {
+          me.jsCaller.getData();
           me.closeForm();
         }
       });

@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using MySqlConnector;
-using System.Data.Common;
 using WebApi_ShoppingOnline.Entity;
 using WebApi_ShoppingOnline.Repository;
 
@@ -12,10 +11,20 @@ namespace WebApi_ShoppingOnline.Service.UserService
         private MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
         private DynamicParameters parameters = new DynamicParameters();
 
-        public User AddUser(User user)
+        public string AddUser(User user)
         {
+            string stmGetUsername = "select * from users where username = @username;";
+            parameters.Add("@username", user.Username);
+            List<User> userByUsername = mySqlConnection.Query<User>(stmGetUsername, parameters).ToList();
+            if (userByUsername.Count > 0)
+            {
+                return "username already exists";
+            }
+
+            mySqlConnection = new MySqlConnection(connectionString);
+            parameters = new DynamicParameters();
             string stmUser = "insert into users (name, username, password, address, dateOfBirth, phoneNumber, email, gender, position)" +
-                " values (@name, @username, @password, @address, @dateOfBirth, @phoneNumber, @email, @gender, @position);";
+                    " values (@name, @username, @password, @address, @dateOfBirth, @phoneNumber, @email, @gender, @position);";
             parameters.Add("@name", user.Name);
             parameters.Add("@username", user.Username);
             parameters.Add("@password", user.Password);
@@ -24,7 +33,7 @@ namespace WebApi_ShoppingOnline.Service.UserService
             parameters.Add("@phoneNumber", user.PhoneNumber);
             parameters.Add("@email", user.Email);
             parameters.Add("@gender", user.Gender);
-            parameters.Add("@position", user.Position);
+            parameters.Add("@position", "customer");
             mySqlConnection.Execute(stmUser, parameters);
 
             // thêm giỏ hàng mới sau khi thêm user
@@ -39,7 +48,7 @@ namespace WebApi_ShoppingOnline.Service.UserService
             parameters.Add("@userID", userMaxId);
             mySqlConnection.Execute(stmCart, parameters);
 
-            return user;
+            return "oke";
         }
 
         public User CheckUser(string username, string password)

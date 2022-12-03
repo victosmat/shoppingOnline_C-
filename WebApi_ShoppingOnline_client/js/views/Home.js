@@ -4,8 +4,22 @@ class Home {
     //me.initEvents();
 
     me.loadData();
+    me.loadUser();
   }
 
+  loadUser() {
+    var me = this;
+    const username = localStorage.getItem("username");
+    if (!username) {
+      $(".btnLogin").show();
+      $(".header__username").hide();
+      $(".header__avatar").hide();
+    } else {
+      $(".btnLogin").hide();
+      $(".header__username").show();
+      $(".header__avatar").show();
+    }
+  }
   loadData() {
     let me = this,
       url = "https://localhost:7008/api/Books/GetBook";
