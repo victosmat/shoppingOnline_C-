@@ -21,7 +21,30 @@ class BookManagement {
 
     me.initToolbarEvents();
     me.initCommandColumnEvents();
+    me.loadUser();
   }
+
+  loadUser() {
+    var me = this;
+    const username = localStorage.getItem("username");
+    if (!username) {
+      $(".btnLogin").show();
+      $(".header__username").hide();
+      $(".header__avatar").hide();
+
+      window.location.href = "login.html";
+    } else {
+      if (localStorage.getItem("position") !== "admin") {
+        // window.location.href = "login.html";
+      }
+
+      $(".btnLogin").hide();
+      $(".header__username").show();
+      $(".header__username").text(username);
+      $(".header__avatar").show();
+    }
+  }
+
   initFormDetail(formId) {
     let me = this;
     me.formDetail = new BookPopup(formId);
@@ -234,6 +257,7 @@ class BookManagement {
               .find(`tbody tr[Id="${selectedRecord.attr("Id")}"]`)
               .remove();
             me.selectedRows = [];
+            alert("Xóa thành công");
           } catch (error) {}
         },
         error: function (res) {

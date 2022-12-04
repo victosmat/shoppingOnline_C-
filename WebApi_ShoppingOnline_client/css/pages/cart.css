@@ -4,3 +4,8 @@
 .book-item-quantity {
   margin: 0 4px;
 }
+#cart-grid {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 200px);
+}

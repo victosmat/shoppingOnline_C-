@@ -23,11 +23,17 @@ class Login {
     CommonFn.Ajax(url, "POST", data, "json", function (err, response) {
       if (err) {
         console.log(err);
-        alert("Có lỗi xảy ra!");
+        alert("Thông tin tài khoản hoặc mật khẩu không chính xác!");
       } else if (response) {
         console.log(response);
         localStorage.setItem("username", response.username);
-        window.location.href = "index.html";
+        localStorage.setItem("userID", response.id);
+        localStorage.setItem("position", response.position);
+        if (response.position == "admin") {
+          window.location.href = "bookmanagement.html";
+        } else {
+          window.location.href = "index.html";
+        }
       }
     });
   }

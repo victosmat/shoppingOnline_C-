@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using MySqlConnector;
-using System.Net;
 using WebApi_ShoppingOnline.Entity;
 using WebApi_ShoppingOnline.Repository;
 
@@ -56,12 +55,12 @@ namespace WebApi_ShoppingOnline.Service.BookService
             return books;
         }
 
-        public List<Book> GetBooksById(int bookID)
+        public Book GetBooksById(int bookID)
         {
             string stm = "select * from books where id = @id;";
             parameters.Add("@id", bookID);
-            List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
-            return books;
+            Book book = mySqlConnection.QueryFirstOrDefault<Book>(stm, parameters);
+            return book;
         }
 
         public List<string> GetCategory()

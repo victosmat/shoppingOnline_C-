@@ -9,7 +9,7 @@ namespace WebApi_ShoppingOnline.Service.BookService
         Book AddBook(Book book);
         Book UpdateBook(Book book);
         int DeleteBook(int bookID);
-        List<Book> GetBooksById(int bookID);   
+        Book GetBooksById(int bookID);
         List<Book> GetBookByCategory(string bookCategory);
         List<Book> GetBookByKeyword(string bookKeyword);
     }

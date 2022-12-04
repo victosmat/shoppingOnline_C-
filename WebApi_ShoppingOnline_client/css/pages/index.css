@@ -3,3 +3,8 @@
   margin-right: 10px;
   text-transform: uppercase;
 }
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

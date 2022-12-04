@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApi_ShoppingOnline.Entity;
 using WebApi_ShoppingOnline.Service.BookService;
 
@@ -63,11 +62,11 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
         [HttpGet("GetBooksById/{bookID}")]
-        public IActionResult GetBooksById(int bookID)
+        public IActionResult GetBooksById([FromRoute] int bookID)
         {
             try
             {
-                List<Book> books = _bookService.GetBooksById(bookID);
+                Book books = _bookService.GetBooksById(bookID);
                 return StatusCode(StatusCodes.Status200OK, books);
             }
             catch (Exception ex)

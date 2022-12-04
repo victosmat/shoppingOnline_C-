@@ -61,6 +61,16 @@ namespace WebApi_ShoppingOnline.Service.UserService
             return null;
         }
 
+        public int UpdatePosition(string userID, string position)
+        {
+            string updateStm = "update users set position = @position where id = @userID";
+            parameters.Add("@position", position);
+            parameters.Add("@userID", userID);
+            int numberOfAffectedRows = mySqlConnection.Execute(updateStm, parameters);
+
+            return numberOfAffectedRows;
+        }
+
         public int DeleteUser(int userID)
         {
             //xoá giỏ hàng của user

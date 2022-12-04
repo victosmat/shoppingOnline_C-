@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApi_ShoppingOnline.Entity;
 using WebApi_ShoppingOnline.Service.CartService;
 
@@ -15,12 +14,27 @@ namespace WebApi_ShoppingOnline.Controllers
             _cartService = new CartService();
         }
 
-        [HttpGet("GetBooksInCart")]
-        public IActionResult GetBooksInCart()
+        [HttpGet("GetCartIDByUserID/{userID}")]
+        public IActionResult GetCartIDByUserID([FromRoute] int userID)
         {
             try
             {
-                List<CartBook> cartBooks = _cartService.GetCartBooks();
+                int cartID = _cartService.GetCartIDByUserID(userID);
+                return StatusCode(StatusCodes.Status200OK, cartID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
+        [HttpGet("GetBooksInCart/{cartID}")]
+        public IActionResult GetBooksInCart(int cartID)
+        {
+            try
+            {
+                List<CartBook> cartBooks = _cartService.GetBooksInCart(cartID);
                 return StatusCode(StatusCodes.Status200OK, cartBooks);
             }
             catch (Exception ex)
@@ -30,14 +44,14 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpPost("AddBooksToCart/{cartID}/{bookID}")]
-        public IActionResult AddBooksToCart([FromRoute] int cartID, [FromRoute] int bookID, int NumberOfBooks)
+        [HttpPost("AddBooksToCart/{cartID}/{bookID}/{numberOfBooks}")]
+        public IActionResult AddBooksToCart([FromRoute] int cartID, [FromRoute] int bookID, [FromRoute] int NumberOfBooks)
         {
             try
             {
                 Boolean checkAdd = _cartService.AddBooksToCart(cartID, bookID, NumberOfBooks);
                 if (checkAdd) return StatusCode(StatusCodes.Status201Created, checkAdd);
-                else return StatusCode(StatusCodes.Status400BadRequest, "books already exist");
+                else return StatusCode(StatusCodes.Status400BadRequest, "Đã có sách trong giỏ hàng!");
             }
             catch (Exception ex)
             {

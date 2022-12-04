@@ -10,6 +10,7 @@ namespace WebApi_ShoppingOnline.Service.CartService
         static private string connectionString = DBConnection.ConnectionString;
         private MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
         private DynamicParameters parameters = new DynamicParameters();
+
         public Boolean AddBooksToCart(int cartID, int bookID, int NumberOfBooks)
         {
             //báo lỗi khi cartID và bookID đã có trong cart_book
@@ -40,11 +41,22 @@ namespace WebApi_ShoppingOnline.Service.CartService
             return cartBookID;
         }
 
-        public List<CartBook> GetCartBooks()
+
+
+        public List<CartBook> GetBooksInCart(int cartID)
         {
-            string stm = "select * from cart_book;";
-            List<CartBook> cartBooks = mySqlConnection.Query<CartBook>(stm).ToList();
+            string stm = "select * from cart_book where cartID = @cartID;";
+            parameters.Add("@cartID", cartID);
+            List<CartBook> cartBooks = mySqlConnection.Query<CartBook>(stm, parameters).ToList();
             return cartBooks;
+        }
+
+        public int GetCartIDByUserID(int userID)
+        {
+            string stm = "select id from carts where userID = @userID;";
+            parameters.Add("@userID", userID);
+            int cartID = mySqlConnection.QueryFirstOrDefault<int>(stm, parameters);
+            return cartID;
         }
 
         public CartBook UpdateNumberOfBookInCart(int cartBookID, int numberOfBookInCart)

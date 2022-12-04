@@ -18,7 +18,7 @@ class Signup {
       phoneNumber = $("#phoneNumber").val(),
       dateOfBirth = $("#dateOfBirth").val(),
       address = $("#address").val(),
-      gender = $("#gender").val(),
+      gender = $('input[name="gender"]:checked').val(),
       name = $("#name").val(),
       url = "https://localhost:7008/api/Users/InsertUser",
       data = {
@@ -31,15 +31,17 @@ class Signup {
         Gender: gender,
         Name: name,
       };
-
-    CommonFn.Ajax(url, "POST", data, "json", function (err, response) {
-      if (err) {
-        console.log(err);
-        alert("Có lỗi xảy ra!");
-      } else if (response) {
-        console.log(response);
-        window.location.href = "login.html";
-        $("#signupForm").trigger("reset");
+    if (password != confirm_password) {
+      alert("Mật khẩu không khớp");
+      return;
+    }
+    CommonFn.Ajax(url, "POST", data, "json", function (response) {
+      if (response) {
+        if (response.status == 201) {
+          window.location.href = "Login.html";
+        } else {
+          alert(response.responseText);
+        }
       }
     });
   }

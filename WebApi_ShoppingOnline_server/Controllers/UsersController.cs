@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApi_ShoppingOnline.Entity;
 using WebApi_ShoppingOnline.Service.UserService;
 
@@ -52,8 +51,12 @@ namespace WebApi_ShoppingOnline.Controllers
         {
             try
             {
-                User addedUsers = _userService.AddUser(user);
-                return StatusCode(StatusCodes.Status201Created, addedUsers);
+                string messageUsers = _userService.AddUser(user);
+                if (messageUsers == "username already exists")
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "username already exists");
+                }
+                return StatusCode(StatusCodes.Status201Created, messageUsers);
             }
             catch (Exception ex)
             {
@@ -68,6 +71,22 @@ namespace WebApi_ShoppingOnline.Controllers
             try
             {
                 User updatedUsers = _userService.UpdateUser(user);
+                return StatusCode(StatusCodes.Status200OK, updatedUsers);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+            }
+        }
+
+        [HttpPut("updatePosition/{userID}")]
+
+        public IActionResult UpdatePosition([FromRoute] string userID, [FromBody] string postion)
+        {
+            try
+            {
+                int updatedUsers = _userService.UpdatePosition(userID, postion);
                 return StatusCode(StatusCodes.Status200OK, updatedUsers);
             }
             catch (Exception ex)
@@ -98,7 +117,7 @@ namespace WebApi_ShoppingOnline.Controllers
             try
             {
                 User user = _userService.CheckUser(signin.Username, signin.Password);
-                
+
                 if (user == null) return StatusCode(StatusCodes.Status400BadRequest, "Invalid input");
                 else return StatusCode(StatusCodes.Status200OK, user);
             }
@@ -112,8 +131,9 @@ namespace WebApi_ShoppingOnline.Controllers
 }
 
 
-public class Signin{
-    public String Username {get; set;}
+public class Signin
+{
+    public String Username { get; set; }
     public String Password { get; set; }
 
 }
