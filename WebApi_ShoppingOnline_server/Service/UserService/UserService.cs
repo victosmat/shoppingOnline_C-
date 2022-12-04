@@ -65,7 +65,7 @@ namespace WebApi_ShoppingOnline.Service.UserService
         {
             string updateStm = "update users set position = @position where id = @userID";
             parameters.Add("@position", position);
-            parameters.Add("@userID", userID);
+            parameters.Add("@userID", Int32.Parse(userID));
             int numberOfAffectedRows = mySqlConnection.Execute(updateStm, parameters);
 
             return numberOfAffectedRows;

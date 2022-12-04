@@ -22,7 +22,42 @@ class UserManagement {
     debugger;
     me.container.off("change", ".position");
     me.container.on("change", ".position", function () {
-      me.updateUser($(this).val());
+      me.updateUser($(this).val(), $(this).parents("tr").attr("Id"));
+    });
+    me.initCommandColumnEvents();
+    me.container.on("click", ".logout", function () {
+      localStorage.removeItem("userID");
+      localStorage.removeItem("username");
+      localStorage.removeItem("position");
+      me.loadUser();
+    });
+  }
+
+  initCommandColumnEvents() {
+    let me = this;
+    // Khởi tạo sự kiện cho nút xóa
+    me.grid.off("click", ".command-delete");
+    me.grid.on("click", ".command-delete", function () {
+      me.delete($(this).parents("tr"));
+    });
+  }
+  delete(selectedRecord) {
+    var me = this;
+    $.ajax({
+      type: "DELETE",
+      url: `https://localhost:7008/api/Users/DeleteUser/${selectedRecord.attr(
+        "Id"
+      )}`,
+      success: function (response) {
+        try {
+          me.grid.find(`tbody tr[Id="${selectedRecord.attr("Id")}"]`).remove();
+          me.selectedRows = [];
+          alert("Xóa thành công");
+        } catch (error) {}
+      },
+      error: function (res) {
+        console.log(res);
+      },
     });
   }
   loadUser() {
@@ -103,7 +138,9 @@ class UserManagement {
         <td fieldname="id">${item.id}</td><td >${item.name}</td><td >${
             item.address
           }</td><td fieldname="price">${
-            item.dateOfBirth == null ? "" : item.dateOfBirth
+            item.dateOfBirth == null
+              ? ""
+              : new Date(item.dateOfBirth).toISOString().slice(0, 10)
           }</td><td fieldname="category">${item.phoneNumber}</td><td >${
             item.email
           }</td><td >
@@ -147,9 +184,8 @@ class UserManagement {
 
     return value;
   }
-  updateUser(value) {
+  updateUser(value, userID) {
     var me = this,
-      userID = localStorage.getItem("username"),
       url = `https://localhost:7008/api/Users/updatePosition/${userID}`,
       data = value;
     CommonFn.Ajax(url, "PUT", data, "json", function (err, response) {

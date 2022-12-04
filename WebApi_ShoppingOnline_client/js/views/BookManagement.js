@@ -22,6 +22,12 @@ class BookManagement {
     me.initToolbarEvents();
     me.initCommandColumnEvents();
     me.loadUser();
+    me.container.on("click", ".logout", function () {
+      localStorage.removeItem("userID");
+      localStorage.removeItem("username");
+      localStorage.removeItem("position");
+      me.loadUser();
+    });
   }
 
   loadUser() {
