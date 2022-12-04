@@ -45,7 +45,33 @@ class Home {
       const quantity = $(this).parent().find(".book-item-quantity").text();
       me.addToCart(bookId, quantity);
     });
+
+    me.container.off("click", ".category");
+    me.container.on("click", ".category", function () {
+      debugger;
+      me.getBookByCategory($(this)[0].innerText);
+    });
   }
+
+  getBookByCategory(category) {
+    var me = this;
+    $.ajax({
+      type: "GET",
+      url: `https://localhost:7008/api/Books/GetBookByCategory/${category}`,
+      success: function (response) {
+        console.log(response);
+        me.renderData([
+          ...response.map((item) => {
+            return { ...item, quantity: 1 };
+          }),
+        ]);
+      },
+      error: function (res) {
+        console.log(res);
+      },
+    });
+  }
+
   async addToCart(bookId, quantity) {
     const userID = localStorage.getItem("userID");
     if (!userID) {
@@ -115,12 +141,38 @@ class Home {
         console.log(res);
       },
     });
+
+    me.loadCategory();
+  }
+
+  loadCategory() {
+    let me = this,
+      url = "https://localhost:7008/api/Books/GetCategory";
+    $.ajax({
+      type: "GET",
+      url: url,
+      success: function (response) {
+        console.log(response);
+        me.renderCategory(response);
+      },
+      error: function (res) {
+        console.log(res);
+      },
+    });
+  }
+
+  renderCategory(data) {
+    var me = this;
+    data.forEach((category) => {
+      var html = `<span class="category">${category}</span>`;
+      $(".category-container").append(html);
+    });
   }
 
   renderData(data) {
     let me = this,
       cardContainer = $(".book-card-container");
-
+    cardContainer.empty();
     data.forEach((book) => {
       let cardHtml = $(`<div class="col-3 pb-3">
           <div class="book-card card" style="width: 18rem">

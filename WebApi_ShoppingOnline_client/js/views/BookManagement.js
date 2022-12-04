@@ -2,6 +2,7 @@ class BookManagement {
   // hàm khởi tạo
   constructor(gridId) {
     let me = this;
+    me.container = $(`body`);
 
     // Lưu lại grid đang thao tác
     me.grid = $(`#${gridId}`);
