@@ -3,6 +3,8 @@ class UserManagement {
     var me = this;
     // Lưu lại grid đang thao tác
     me.grid = $(`#${gridId}`);
+
+    me.pageNumber = 1;
     me.container = $(`body`);
     // lấy dữ liệu
     me.getData();
@@ -30,6 +32,10 @@ class UserManagement {
       localStorage.removeItem("username");
       localStorage.removeItem("position");
       me.loadUser();
+    });
+    me.container.on("click", ".page-item", function () {
+      me.pageNumber = parseInt($($(this).find(".page-link")[0]).text());
+      me.getData();
     });
   }
 
@@ -84,11 +90,37 @@ class UserManagement {
     let me = this;
     $.ajax({
       type: "GET",
-      url: "https://localhost:7008/api/Users/GetUser",
+      url: `https://localhost:7008/api/Users/GetUser/${me.pageNumber}/8`,
       success: function (response) {
         me.renderData(response);
 
         me.storedData = response;
+      },
+      error: function (res) {
+        console.log(res);
+      },
+    });
+
+    me.getTotalPage();
+  }
+
+  getTotalPage() {
+    let me = this;
+    $.ajax({
+      type: "GET",
+      url: "https://localhost:7008/api/Users/GetNumberOfUser/8",
+      success: function (response) {
+        $(".pagination").empty();
+        for (let i = 1; i <= response; i++) {
+          $(".pagination").append(
+            ` <li 
+            class="page-item ${
+              i == me.pageNumber ? "active" : ""
+            }" aria-current="page">
+                  <span class="page-link">${i}</span>
+                </li>`
+          );
+        }
       },
       error: function (res) {
         console.log(res);

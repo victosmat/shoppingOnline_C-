@@ -48,9 +48,11 @@ namespace WebApi_ShoppingOnline.Service.BookService
             return books;
         }
 
-        public List<Book> GetBooks()
+        public List<Book> GetBooks(int pageNumber, int pageSize)
         {
-            string stm = "select * from books";
+            string stm = "select * from books LIMIT @pageNumber, @pageSize;";
+            parameters.Add("@pageNumber", (pageNumber - 1) * pageSize);
+            parameters.Add("@pageSize", pageSize);
             List<Book> books = mySqlConnection.Query<Book>(stm, parameters).ToList();
             return books;
         }
@@ -68,6 +70,13 @@ namespace WebApi_ShoppingOnline.Service.BookService
             string stm = "select category from books group by category;";
             List<string> categorys = mySqlConnection.Query<string>(stm, parameters).ToList();
             return categorys;
+        }
+
+        public int GetNumberOfBook(int pageSize)
+        {
+            string stm = "select round(count(*) / @pageSize) from books;";
+            parameters.Add("@pageSize", pageSize);
+            return mySqlConnection.QueryFirstOrDefault<int>(stm, parameters);
         }
 
         public Book UpdateBook(Book book)

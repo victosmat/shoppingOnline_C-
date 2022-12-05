@@ -14,14 +14,30 @@ namespace WebApi_ShoppingOnline.Controllers
         {
             _bookService = new BookService();
         }
-        [HttpGet("GetBook")]
-        public IActionResult GetAllBoook()
+        [HttpGet("GetBook/{pageNumber}/{pageSize}")]
+        public IActionResult GetAllBoook([FromRoute] int pageNumber, [FromRoute] int pageSize)
         {
 
             try
             {
-                List<Book> books = _bookService.GetBooks();
+                List<Book> books = _bookService.GetBooks(pageNumber, pageSize);
                 return StatusCode(StatusCodes.Status200OK, books);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+
+            }
+        }
+        [HttpGet("GetNumberOfBook/{pageSize}")]
+        public IActionResult GetNumberOfBook(int pageSize)
+        {
+
+            try
+            {
+                int _pageSize = _bookService.GetNumberOfBook(pageSize);
+                return StatusCode(StatusCodes.Status200OK, _pageSize);
             }
             catch (Exception ex)
             {

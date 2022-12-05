@@ -1,0 +1,22 @@
+.category {
+  font-size: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.img-wrapper {
+  height: 400px;
+  overflow: hidden;
+}
+.carousel-inner {
+  height: 550px;
+}
+.card-footer {
+  padding-left: 10px;
+  padding-right: 10px;
+}

@@ -92,3 +92,6 @@ a:hover {
   width: 100%;
   height: calc(100vh - 180px);
 }
+.pagination *:not(strong) {
+  margin-right: 0px;
+}

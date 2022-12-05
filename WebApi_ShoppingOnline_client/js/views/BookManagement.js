@@ -4,6 +4,7 @@ class BookManagement {
     let me = this;
     me.container = $(`body`);
 
+    me.pageNumber = 1;
     // Lưu lại grid đang thao tác
     me.grid = $(`#${gridId}`);
     // lấy dữ liệu
@@ -28,6 +29,10 @@ class BookManagement {
       localStorage.removeItem("username");
       localStorage.removeItem("position");
       me.loadUser();
+    });
+    me.container.on("click", ".page-item", function () {
+      me.pageNumber = parseInt($($(this).find(".page-link")[0]).text());
+      me.getData();
     });
   }
 
@@ -60,7 +65,7 @@ class BookManagement {
     let me = this;
     $.ajax({
       type: "GET",
-      url: "https://localhost:7008/api/Books/GetBook",
+      url: `https://localhost:7008/api/Books/GetBook/${me.pageNumber}/8`,
       success: function (response) {
         me.renderData(response);
 
@@ -70,7 +75,34 @@ class BookManagement {
         console.log(res);
       },
     });
+
+    me.getTotalPage();
   }
+
+  getTotalPage() {
+    let me = this;
+    $.ajax({
+      type: "GET",
+      url: "https://localhost:7008/api/Books/GetNumberOfBook/8",
+      success: function (response) {
+        $(".pagination").empty();
+        for (let i = 1; i <= response; i++) {
+          $(".pagination").append(
+            ` <li 
+            class="page-item ${
+              i == me.pageNumber ? "active" : ""
+            }" aria-current="page">
+                  <span class="page-link">${i}</span>
+                </li>`
+          );
+        }
+      },
+      error: function (res) {
+        console.log(res);
+      },
+    });
+  }
+
   renderData(data) {
     try {
       let me = this,
@@ -206,7 +238,6 @@ class BookManagement {
     }
   }
   edit(selectedRow) {
-    debugger;
     try {
       let me = this,
         data = {};

@@ -3,7 +3,7 @@ class Home {
     let me = this;
     //me.initEvents();
     me.container = $("body");
-
+    me.pageNumber = 1;
     me.loadData();
     me.initEvents();
     me.loadUser();
@@ -147,7 +147,7 @@ class Home {
   }
   loadData() {
     let me = this,
-      url = "https://localhost:7008/api/Books/GetBook";
+      url = "https://localhost:7008/api/Books/GetBook/1/1000";
     $.ajax({
       type: "GET",
       url: url,
@@ -158,24 +158,6 @@ class Home {
             return { ...item, quantity: 1 };
           }),
         ]);
-      },
-      error: function (res) {
-        console.log(res);
-      },
-    });
-
-    me.loadCategory();
-  }
-
-  loadCategory() {
-    let me = this,
-      url = "https://localhost:7008/api/Books/GetCategory";
-    $.ajax({
-      type: "GET",
-      url: url,
-      success: function (response) {
-        console.log(response);
-        me.renderCategory(response);
       },
       error: function (res) {
         console.log(res);

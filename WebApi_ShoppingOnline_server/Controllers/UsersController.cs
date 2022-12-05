@@ -30,14 +30,29 @@ namespace WebApi_ShoppingOnline.Controllers
             }
         }
 
-        [HttpGet("GetUser")]
-        public IActionResult GetAllUsers()
+        [HttpGet("GetUser/{pageNumber}/{pageSize}")]
+        public IActionResult GetAllUsers([FromRoute] int pageNumber, [FromRoute] int pageSize)
         {
 
             try
             {
-                List<User> users = _userService.GetUsers();
+                List<User> users = _userService.GetUsers(pageNumber, pageSize);
                 return StatusCode(StatusCodes.Status200OK, users);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "error");
+
+            }
+        }
+        [HttpGet("GetNumberOfUser/{pageSize}")]
+        public IActionResult GetNumberOfUser(int pageSize)
+        {
+            try
+            {
+                int _pageSize = _userService.GetNumberOfUser(pageSize);
+                return StatusCode(StatusCodes.Status200OK, _pageSize);
             }
             catch (Exception ex)
             {
