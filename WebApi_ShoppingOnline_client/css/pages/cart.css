@@ -9,3 +9,12 @@
   width: 100%;
   height: calc(100vh - 200px);
 }
+.modal-detail {
+  width: 500px;
+}
+#orderPopup {
+  display: none;
+}
+.label {
+  margin-bottom: 0;
+}

@@ -51,8 +51,30 @@ class Home {
       debugger;
       me.getBookByCategory($(this)[0].innerText);
     });
+    me.container.off("click", ".btnSearch");
+    me.container.on("click", ".btnSearch", function () {
+      debugger;
+      me.getBookByKeyWord($(".search-input").val());
+    });
   }
-
+  getBookByKeyWord(keyword) {
+    var me = this;
+    $.ajax({
+      type: "GET",
+      url: `https://localhost:7008/api/Books/GetBookByKeyword/${keyword}`,
+      success: function (response) {
+        console.log(response);
+        me.renderData([
+          ...response.map((item) => {
+            return { ...item, quantity: 1 };
+          }),
+        ]);
+      },
+      error: function (res) {
+        console.log(res);
+      },
+    });
+  }
   getBookByCategory(category) {
     var me = this;
     $.ajax({
@@ -182,9 +204,14 @@ class Home {
               alt="..."
             /></div>
             <div class="card-body">
-              <h5 class="card-title">${book.name + " - " + book.author}</h5>
+              <h5 class="card-title">
+                <div>${book.name}</div>
+              </h5>
               <p class="card-text">
-               ${book.price}đ
+              Tác giả: ${book.author}
+              </p>
+              <p class="card-text">
+               Giá: ${book.price}đ
               </p>
               <p class="card-text">
              Thể loại:  ${book.category}
@@ -206,9 +233,7 @@ class Home {
                       +
                     </button>
               
-              <button    Id=${
-                book.id
-              } class="btn btn-primary btnAddToCart">Thêm vào giỏ</button>
+              <button    Id=${book.id} class="btn btn-primary btnAddToCart">Thêm vào giỏ</button>
             </div>
             </div>
           </div>

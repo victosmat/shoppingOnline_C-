@@ -81,6 +81,72 @@
         </div>
       </div>
     </div>
+    <form id="orderPopup" class="modal-detail-wrapper">
+      <div class="modal-detail">
+        <div class="modal-right">
+          <div class="row">
+            <div class="col-12">
+              <p class="modal__title">Đặt hàng thành công</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="input-label">
+                <label for="" class="label">Ngày đặt hàng:</label>
+                <input
+                  FieldName="date"
+                  tabindex="2"
+                  style="width: 100px; border: none"
+                  type="text"
+                  disabled
+                  class="input"
+                />
+              </div>
+              <div class="input-label">
+                <label for="" class="label">Tổng số tiền:</label>
+                <input
+                  FieldName="totalPrice"
+                  tabindex="2"
+                  style="width: 100px; border: none"
+                  type="text"
+                  disabled
+                  class="input"
+                />
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="input-label">
+                <label for="" class="label">Người đặt:</label>
+                <input
+                  tabindex="2"
+                  style="width: 100px; border: none"
+                  type="text"
+                  disabled
+                  class="input customerName"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="modal__buttons">
+                <button
+                  tabindex="11"
+                  type="button"
+                  id="btnClose"
+                  class="btn btn-outline-secondary"
+                  CommandForm="Close"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -100,6 +166,7 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../assets/Fonts/FontAwesome.Pro.6.1.1/fontawesome-pro-6.1.1-web/js/all.min.js"></script>
     <script src="../js/common/Common.js"></script>
+    <script src="../js/views/OrderPopup.js"></script>
     <script src="../js/views/Cart.js"></script>
   </body>
 </html>

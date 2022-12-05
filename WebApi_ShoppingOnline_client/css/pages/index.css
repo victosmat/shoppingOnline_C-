@@ -13,3 +13,10 @@
   height: 400px;
   overflow: hidden;
 }
+.carousel-inner {
+  height: 550px;
+}
+.card-footer {
+  padding-left: 10px;
+  padding-right: 10px;
+}

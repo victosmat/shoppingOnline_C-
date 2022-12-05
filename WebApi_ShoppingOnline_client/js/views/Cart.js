@@ -23,6 +23,10 @@ class Cart {
       $(".header__avatar").show();
     }
   }
+  initFormDetail(formId) {
+    let me = this;
+    me.formDetail = new OrderPopup(formId);
+  }
   initEvents() {
     var me = this;
     me.container.on("click", ".logout", function () {
@@ -97,7 +101,11 @@ class Cart {
           console.log(err);
         } else if (response) {
           console.log(response);
-          alert("Đặt hàng thành công");
+          me.formDetail.open(response);
+          data.forEach((item) => {
+            me.grid.find(`tbody tr[Id="${item}"]`).remove();
+          });
+          me.selectedRecords = [];
         }
       }
     );
@@ -297,3 +305,4 @@ class Cart {
   }
 }
 var cart = new Cart();
+cart.initFormDetail("orderPopup");
