@@ -9,3 +9,7 @@
   align-items: center;
   justify-content: space-between;
 }
+.img-wrapper {
+  height: 400px;
+  overflow: hidden;
+}

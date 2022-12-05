@@ -176,11 +176,11 @@ class Home {
     data.forEach((book) => {
       let cardHtml = $(`<div class="col-3 pb-3">
           <div class="book-card card" style="width: 18rem">
-            <img
+            <div class="img-wrapper"><img
               src="${book.imageUrl}"
               class="card-img-top"
               alt="..."
-            />
+            /></div>
             <div class="card-body">
               <h5 class="card-title">${book.name + " - " + book.author}</h5>
               <p class="card-text">
