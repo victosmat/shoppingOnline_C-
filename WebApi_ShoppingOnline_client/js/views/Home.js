@@ -3,7 +3,7 @@ class Home {
     let me = this;
     //me.initEvents();
     me.container = $("body");
-
+    me.pageNumber = 1;
     me.loadData();
     me.initEvents();
     me.loadUser();
@@ -147,7 +147,7 @@ class Home {
   }
   loadData() {
     let me = this,
-      url = "https://localhost:7008/api/Books/GetBook";
+      url = "https://localhost:7008/api/Books/GetBook/1/100";
     $.ajax({
       type: "GET",
       url: url,

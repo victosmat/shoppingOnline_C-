@@ -107,7 +107,7 @@ namespace WebApi_ShoppingOnline.Service.UserService
         }
         public int GetNumberOfUser(int pageSize)
         {
-            string stm = "select round(count(*) / @pageSize) from users;";
+            string stm = "select ceil(count(*) / @pageSize) from users;";
             parameters.Add("@pageSize", pageSize);
             return mySqlConnection.QueryFirstOrDefault<int>(stm, parameters);
         }
@@ -134,6 +134,6 @@ namespace WebApi_ShoppingOnline.Service.UserService
             parameters.Add("@userID", user.Id);
             user = mySqlConnection.QueryFirstOrDefault<User>(stmUser, parameters);
             return user;
-        }
+        } 
     }
 }

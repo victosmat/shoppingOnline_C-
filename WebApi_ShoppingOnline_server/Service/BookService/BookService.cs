@@ -74,7 +74,7 @@ namespace WebApi_ShoppingOnline.Service.BookService
 
         public int GetNumberOfBook(int pageSize)
         {
-            string stm = "select round(count(*) / @pageSize) from books;";
+            string stm = "select ceil(count(*) / @pageSize) from books;";
             parameters.Add("@pageSize", pageSize);
             return mySqlConnection.QueryFirstOrDefault<int>(stm, parameters);
         }
