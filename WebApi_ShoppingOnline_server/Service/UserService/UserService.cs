@@ -97,11 +97,19 @@ namespace WebApi_ShoppingOnline.Service.UserService
             return users;
         }
 
-        public List<User> GetUsers()
+        public List<User> GetUsers(int pageNumber, int pageSize)
         {
-            string stm = "select * from users";
-            List<User> users = mySqlConnection.Query<User>(stm).ToList();
+            string stm = "select * from users LIMIT @pageNumber, @pageSize;";
+            parameters.Add("@pageNumber", (pageNumber - 1) * pageSize);
+            parameters.Add("@pageSize", pageSize);
+            List<User> users = mySqlConnection.Query<User>(stm, parameters).ToList();
             return users;
+        }
+        public int GetNumberOfUser(int pageSize)
+        {
+            string stm = "select round(count(*) / @pageSize) from users;";
+            parameters.Add("@pageSize", pageSize);
+            return mySqlConnection.QueryFirstOrDefault<int>(stm, parameters);
         }
 
         public User UpdateUser(User user)

@@ -1,0 +1,20 @@
+.btn-change-number {
+  padding: 0 3px;
+}
+.book-item-quantity {
+  margin: 0 4px;
+}
+#cart-grid {
+  overflow: auto;
+  width: 100%;
+  height: calc(100vh - 200px);
+}
+.modal-detail {
+  width: 500px;
+}
+#orderPopup {
+  display: none;
+}
+.label {
+  margin-bottom: 0;
+}

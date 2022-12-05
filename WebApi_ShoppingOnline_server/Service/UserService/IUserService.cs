@@ -4,7 +4,8 @@ namespace WebApi_ShoppingOnline.Service.UserService
 {
     public interface IUserService
     {
-        List<User> GetUsers();
+        List<User> GetUsers(int pageNumber, int pageSize);
+        int GetNumberOfUser(int pageSize);
         string AddUser(User user);
         User UpdateUser(User user);
         int DeleteUser(int userID);
